@@ -1,30 +1,29 @@
-var fixedRect, movingRect;
+var rectmover;
+var rectfijo;
 
-function setup() {
-  createCanvas(1200,800);
-  fixedRect = createSprite(600, 400, 50, 80);
-  fixedRect.shapeColor = "green";
-  fixedRect.debug = true;
-  movingRect = createSprite(400,200,80,30);
-  movingRect.shapeColor = "green";
-  movingRect.debug = true;
+function setup(){
+  rectmover = createSprite(100,50,20,50);
+  rectmover.shapeColor = "purple";
+  rectmover.debug =true;
+  rectfijo = createSprite(500,300,20,50);
+  rectfijo.shapeColor = "red";
+  rectfijo.debug =true;
 }
 
-function draw() {
-  background(0,0,0);  
-  movingRect.x = World.mouseX;
-  movingRect.y = World.mouseY;
+function draw (){
+createCanvas(1000,600);
+background(0,0,0);
 
-  if (movingRect.x - fixedRect.x < fixedRect.width/2 + movingRect.width/2
-      && fixedRect.x - movingRect.x < fixedRect.width/2 + movingRect.width/2
-      && movingRect.y - fixedRect.y < fixedRect.height/2 + movingRect.height/2
-      && fixedRect.y - movingRect.y < fixedRect.height/2 + movingRect.height/2) {
-    movingRect.shapeColor = "red";
-    fixedRect.shapeColor = "red";
-  }
-  else {
-    movingRect.shapeColor = "green";
-    fixedRect.shapeColor = "green";
-  }
-  drawSprites();
+//rectmover.x-rectfijo.x === rectmover.width/2 + rectfijo.width/2;
+if(rectmover.x-rectfijo.x < rectmover.width/2 + rectfijo.width/2
+  && rectfijo.x-rectmover.x < rectfijo.width/2 + rectmover.width/2 ){
+  rectmover.shapeColor = "green";
+  rectfijo.shapeColor = "green";
+} else {
+  rectmover.shapeColor = "purple";
+  rectfijo.shapeColor = "red";
+}
+rectmover.x=World.mouseX;
+rectmover.y=World.mouseY;
+drawSprites();
 }
